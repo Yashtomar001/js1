@@ -9,7 +9,7 @@
 // }
 // console.log(res);
 
-// pallindrome check using push and pop method
+// palindrome check using push and pop method
 // let arr=[1,2,3,2,2]
 // let original=[];
 // let reverse=[]
@@ -32,32 +32,32 @@
 // }
 // console.log(palindrome);  
 
-let arr = [1, 2, 3, 2, 1]; // You can change this array
-let original = [];
-let reverse = [];
+// let arr = [1, 2, 3, 2, 1]; // You can change this array
+// let original = [];
+// let reverse = [];
 
-// Copy original array
-for (let i = 0; i < arr.length; i++) {
-  original.push(arr[i]);
-}
+// // Copy original array
+// for (let i = 0; i < arr.length; i++) {
+//   original.push(arr[i]);
+// }
 
-// Create reversed array (without modifying original)
-for (let i = arr.length - 1; i >= 0; i--) {
-  reverse.push(arr[i]);
-}
+// // Create reversed array (without modifying original)
+// for (let i = arr.length - 1; i >= 0; i--) {
+//   reverse.push(arr[i]);
+// }
 
-// Compare both arrays
-let isPalindrome = true;
-for (let i = 0; i < original.length; i++) {
-  if (original[i] !== reverse[i]) {
-    isPalindrome = false;
-    break;
-  }
-}
+// // Compare both arrays
+// let isPalindrome = true;
+// for (let i = 0; i < original.length; i++) {
+//   if (original[i] !== reverse[i]) {
+//     isPalindrome = false;
+//     break;
+//   }
+// }
 
-// Final result
-if (isPalindrome) {
-  console.log("It is a palindrome");
-} else {
-  console.log("It is not a palindrome");
-}
+// // Final result
+// if (isPalindrome) {
+//   console.log("It is a palindrome");
+// } else {
+//   console.log("It is not a palindrome");
+// }
