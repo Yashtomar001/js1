@@ -1,0 +1,67 @@
+const eventContainer = document.getElementById("eventContainer");
+const addSampleBtn = document.getElementById("addSampleBtn");
+const clearAllBtn = document.getElementById("clearAllBtn");
+
+const sampleEvents = [
+    {
+        title: "Tech Conference",
+        date: "2026-04-06",
+        category: "Conference",
+        description: "A conference on latest tech trends."
+    },
+    {
+        title: "Hackathon",
+        date: "2026-05-12",
+        category: "Competition",
+        description: "24 hour coding challenge."
+    }
+];
+
+function createEventCard(eventData) {
+    const card = document.createElement("div");
+    card.className = "event-card";
+
+    card.innerHTML = `
+        <button class="delete-btn">X</button>
+        <h3>${eventData.title}</h3>
+        <p><strong>Date:</strong> ${eventData.date}</p>
+        <span>${eventData.category}</span>
+        <p>${eventData.description}</p>
+    `;
+
+    card.querySelector(".delete-btn").addEventListener("click", () => {
+        card.remove();
+        checkEmptyState();
+    });
+
+    return card;
+}
+
+function addEvent(eventData) {
+    removeEmptyState();
+    eventContainer.appendChild(createEventCard(eventData));
+}
+
+function removeEmptyState() {
+    const empty = document.querySelector(".empty-state");
+    if (empty) empty.remove();
+}
+
+function checkEmptyState() {
+    if (eventContainer.children.length === 0) {
+        const emptyDiv = document.createElement("div");
+        emptyDiv.className = "empty-state";
+        emptyDiv.textContent = "No events yet. Add your first event!";
+        eventContainer.appendChild(emptyDiv);
+    }
+}
+
+addSampleBtn.addEventListener("click", () => {
+    const randomEvent = sampleEvents[Math.floor(Math.random() * sampleEvents.length)];
+    addEvent(randomEvent);
+});
+
+clearAllBtn.addEventListener("click", () => {
+    eventContainer.innerHTML = "";
+    checkEmptyState();
+});
