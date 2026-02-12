@@ -1,52 +1,67 @@
-const eventList = document.getElementById("eventList");
-const noEvents = document.getElementById("noEvents");
+const eventContainer = document.getElementById("eventContainer");
+const addSampleBtn = document.getElementById("addSampleBtn");
+const clearAllBtn = document.getElementById("clearAllBtn");
 
-// Add Event
-function addEvent() {
-  const name = document.getElementById("eventName").value;
-  const date = document.getElementById("eventDate").value;
-  const category = document.getElementById("eventCategory").value;
+const sampleEvents = [
+    {
+        title: "Tech Conference",
+        date: "2026-04-06",
+        category: "Conference",
+        description: "A conference on latest tech trends."
+    },
+    {
+        title: "Hackathon",
+        date: "2026-05-12",
+        category: "Competition",
+        description: "24 hour coding challenge."
+    }
+];
 
-  if (!name || !date || !category) {
-    alert("Please fill all fields");
-    return;
-  }
+function createEventCard(eventData) {
+    const card = document.createElement("div");
+    card.className = "event-card";
 
-  const li = document.createElement("li");
-  li.textContent = `${name} | ${date} | ${category}`;
-  eventList.appendChild(li);
+    card.innerHTML = `
+        <button class="delete-btn">X</button>
+        <h3>${eventData.title}</h3>
+        <p><strong>Date:</strong> ${eventData.date}</p>
+        <span>${eventData.category}</span>
+        <p>${eventData.description}</p>
+    `;
 
-  noEvents.style.display = "none";
+    card.querySelector(".delete-btn").addEventListener("click", () => {
+        card.remove();
+        checkEmptyState();
+    });
 
-  document.getElementById("eventName").value = "";
-  document.getElementById("eventDate").value = "";
-  document.getElementById("eventCategory").value = "";
+    return card;
 }
 
-// Clear Events
-function clearEvents() {
-  eventList.innerHTML = "";
-  noEvents.style.display = "block";
+function addEvent(eventData) {
+    removeEmptyState();
+    eventContainer.appendChild(createEventCard(eventData));
 }
 
-// Sample Events
-function addSampleEvents() {
-  const samples = [
-    "AI Workshop | 2026-03-10 | Workshop",
-    "Tech Seminar | 2026-03-15 | Seminar",
-    "College Hackathon | 2026-04-01 | Hackathon"
-  ];
-
-  samples.forEach(e => {
-    const li = document.createElement("li");
-    li.textContent = e;
-    eventList.appendChild(li);
-  });
-
-  noEvents.style.display = "none";
+function removeEmptyState() {
+    const empty = document.querySelector(".empty-state");
+    if (empty) empty.remove();
 }
 
-// DOM Manipulation Demo
-document.getElementById("domInput").addEventListener("input", function () {
-  document.getElementById("domOutput").textContent = this.value;
+function checkEmptyState() {
+    if (eventContainer.children.length === 0) {
+        const emptyDiv = document.createElement("div");
+        emptyDiv.className = "empty-state";
+        emptyDiv.textContent = "No events yet. Add your first event!";
+        eventContainer.appendChild(emptyDiv);
+    }
+}
+
+addSampleBtn.addEventListener("click", () => {
+    const randomEvent = sampleEvents[Math.floor(Math.random() * sampleEvents.length)];
+    addEvent(randomEvent);
+});
+
+clearAllBtn.addEventListener("click", () => {
+    eventContainer.innerHTML = "";
+    checkEmptyState();
 });
