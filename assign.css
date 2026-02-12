@@ -1,0 +1,89 @@
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+.title {
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 350px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.card.full {
+  width: 740px;
+  margin: 20px auto;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+input, select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 6px;
+  background: #6a5cff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.btn-group {
+  display: flex;
+  gap: 10px;
+}
+
+.secondary {
+  background: #4caf50;
+}
+
+.danger {
+  background: #f44336;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+li {
+  background: #f1f1f1;
+  margin: 8px 0;
+  padding: 8px;
+  border-radius: 5px;
+}
