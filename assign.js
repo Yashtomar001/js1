@@ -1,67 +1,40 @@
-const eventContainer = document.getElementById("eventContainer");
-const addSampleBtn = document.getElementById("addSampleBtn");
-const clearAllBtn = document.getElementById("clearAllBtn");
+const eventForm=document.getElementById("eventForm");
+const eventTitle=document.getElementById("eventTitle");
+const eventDate=document.getElementById("eventDate");
+const eventCategory=document.getElementById("eventCategory");
+const eventDescription=document.getElementById("eventDescription");
+const clearAllBtn=document.getElementById("clearAllBtn");
+const addSampleBtn=document.getElementById("addSampleBtn");
+const eventContainer=document.getElementById("eventContainer");
+const demoContent=document.getElementById("demoContent");
 
-const sampleEvents = [
-    {
-        title: "Tech Conference",
-        date: "2026-04-06",
-        category: "Conference",
-        description: "A conference on latest tech trends."
-    },
-    {
-        title: "Hackathon",
-        date: "2026-05-12",
-        category: "Competition",
-        description: "24 hour coding challenge."
-    }
-];
 
-function createEventCard(eventData) {
-    const card = document.createElement("div");
-    card.className = "event-card";
-
-    card.innerHTML = `
-        <button class="delete-btn">X</button>
-        <h3>${eventData.title}</h3>
-        <p><strong>Date:</strong> ${eventData.date}</p>
-        <span>${eventData.category}</span>
-        <p>${eventData.description}</p>
-    `;
-
-    card.querySelector(".delete-btn").addEventListener("click", () => {
-        card.remove();
-        checkEmptyState();
-    });
-
-    return card;
+const sampleEvents = 
+[
+{
+    title:"Web dev",
+    date:"4-5-2026",
+    category:"Workshop",
+    description:"usd ius sijjnsf j snen s"
+},
+{
+    title:"Web dev2",
+    date:"4-6-2026",
+    category:"conference",
+    description:"bds iudsfnjn s sijjnsf j snen s"
 }
+]
 
-function addEvent(eventData) {
-    removeEmptyState();
-    eventContainer.appendChild(createEventCard(eventData));
+function createEventCard(eventData){
+   const card=document.createElement("div");
+
+   card.innerHTML=`
+   <button class="delete-btn">X</button>
+   <h3>${eventData.title}</h3>
+   <div>${eventData.date}</div>
+   <span>${eventData.category}</span>
+   <p>${eventData.description}</p>
+   `
+
+   return card;
 }
-
-function removeEmptyState() {
-    const empty = document.querySelector(".empty-state");
-    if (empty) empty.remove();
-}
-
-function checkEmptyState() {
-    if (eventContainer.children.length === 0) {
-        const emptyDiv = document.createElement("div");
-        emptyDiv.className = "empty-state";
-        emptyDiv.textContent = "No events yet. Add your first event!";
-        eventContainer.appendChild(emptyDiv);
-    }
-}
-
-addSampleBtn.addEventListener("click", () => {
-    const randomEvent = sampleEvents[Math.floor(Math.random() * sampleEvents.length)];
-    addEvent(randomEvent);
-});
-
-clearAllBtn.addEventListener("click", () => {
-    eventContainer.innerHTML = "";
-    checkEmptyState();
-});
